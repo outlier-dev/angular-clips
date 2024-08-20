@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-alert',
@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './alert.component.scss'
 })
 export class AlertComponent {
+  @Input() color = 'blue'
 
+  get bgColor(){
+    return `bg-${this.color}-400`
+  }
 }

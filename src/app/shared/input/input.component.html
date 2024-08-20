@@ -1,1 +1,21 @@
-<p>input works!</p>
+<input [formControl]="control"
+       [type]="type"
+       [mask]="format"
+       [dropSpecialCharacters]="false"
+       class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition
+                  duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+       [placeholder]="placeholder"
+       [ngClass]="{'border-green-500': control.touched && control.dirty && control.valid, 'border-red-400' : control.touched && control.dirty && !control.valid}"
+/>
+<ng-container *ngIf="control.touched && control.dirty">
+  <p *ngIf="control.errors?.required" class="text-red-400">This field is required</p>
+  <p *ngIf="control.errors?.minlength" class="text-red-400">The value you inputed is {{control.errors?.minlength.actualLength}} characters long. It must be at least {{control.errors?.minlength.requiredLength}}</p>
+  <p *ngIf="control.errors?.pattern && type !== 'password' " class="text-red-400">This field must contain only {{control.errors?.pattern.requiredPattern}} characters</p>
+  <p *ngIf="control.errors?.pattern && type === 'password' " class="text-red-400">Password must be 8 char long, contain at least 1 uppercase letter, 1 lowercase letter, and 1 number and can contain special characters</p>
+  <p *ngIf="control.errors?.email" class="text-red-400">Please provide a valid E-Mail</p>
+  <p *ngIf="control.errors?.min" class="text-red-400">Required to be at least {{control.errors?.min.min}}</p>
+  <p *ngIf="control.errors?.max" class="text-red-400">Required to be less than {{control.errors?.max.max}}</p>
+  <p *ngIf="control.errors?.noMatch" class="text-red-400">Value do not match</p>
+  <p *ngIf="control.errors?.emailIsTaken" class="text-red-400">This Email is taken</p>
+</ng-container>
+
