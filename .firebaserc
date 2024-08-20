@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "clips-145f3": {
+      "hosting": {
+        "clips-no-ssr": [
+          "clips-145f3"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "clips-145f3"
+  }
+}
