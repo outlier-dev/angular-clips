@@ -89,9 +89,8 @@
           "defaultConfiguration": "development",
           "options": {
             "headers": {
-              "Cross-Origin-Opener-Policy":"same-origin",
-              "Cross-Origin-Embedder-Policy":"require-corp"
-
+              "Cross-Origin-Opener-Policy": "same-origin",
+              "Cross-Origin-Embedder-Policy": "require-corp"
             }
           }
         },
@@ -117,7 +116,8 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "karmaConfig": "karma.conf.js"
           }
         },
         "deploy": {
@@ -136,11 +136,60 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "clips-no-ssr:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "clips-no-ssr:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "clips-no-ssr:serve",
+            "watch": true,
+            "headless": false,
+            "testingType": "component"
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "clips-no-ssr:serve:development"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "clips-no-ssr:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "clips-no-ssr:serve:production"
+            }
+          }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "@cypress/schematic",
+      "@schematics/angular"
+    ]
   }
 }
